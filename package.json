@@ -1,0 +1,14 @@
+{
+  "name": "frontiers-devtools-demo-app-2020",
+  "version": "1.0.0",
+  "description": "Example app for frontiers 2020 devtools presentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Steve Gill",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^2.0.0"
+  }
+}
