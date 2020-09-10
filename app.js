@@ -3,7 +3,13 @@ const { App } = require('@slack/bolt');
 // Initializes your app with your bot token and signing secret
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+
+  // OAuth Related options
+  // clientId: process.env.CLIENT_ID,
+  // clientSecret: process.env.CLIENT_SECRET,
+  // stateSecret: 'my-state-secret',
+  // scopes: ['channels:read', 'chat:write', 'app_mentions:read', 'channels:manage', 'commands', 'links:write'],
 });
 
 (async () => {
@@ -19,7 +25,6 @@ const app = new App({
 //   try {
 //     // directly call the api method 'chat.postMessage'
 //     const result = await client.chat.postMessage({
-//       token: context.botToken,
 //       channel: event.channel,
 //       text: `Thanks for the mention, <@${event.user}>!`
 //     });
@@ -67,6 +72,7 @@ const app = new App({
 // });
 
 // app home demo
+// subscribe to app_home_opened event
 // app.event('app_home_opened', async ({ event, context, client }) => {
 //   console.log('app home opened');
 //   console.log(event.tab);
@@ -119,8 +125,8 @@ const app = new App({
 // });
 
 // setup shortcut in your App config page
+// add commands permission
 // app.shortcut('launch_shortcut', async ({ shortcut, ack, context, client }) => {
-
 //   try {
 //     // Acknowledge shortcut request
 //     await ack();
@@ -163,5 +169,14 @@ const app = new App({
 //   }
 //   catch (error) { 
 //     console.error(error);
+//   }
+// });
+
+// Link shared event
+// app.event('link_shared', async ({ event, body, ack, client }) => {
+//   try {
+
+//   } catch (err) {
+//     console.error(err);
 //   }
 // });
