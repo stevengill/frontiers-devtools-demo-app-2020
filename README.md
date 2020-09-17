@@ -14,7 +14,7 @@ npm install
 
 ## Install app to workspace
 
-In your [**App Config** Page](https://api.slack.com/apps), go to **OAuth & Permissions** and add the `channels:read`, `app_mentions:read`, and `chat:write` permissions. Click **install App** to install the app to your workspace and generate a bot token.
+In your [**App Config** Page](https://api.slack.com/apps), go to **OAuth & Permissions** and add the `channels:read`, `app_mentions:read`, `commands` and `chat:write` permissions. Click **install App** to install the app to your workspace and generate a bot token.
 
 ## Setup Environment Variables
 
@@ -35,7 +35,7 @@ npm start
 
 This will start the app on port `3000`.
 
-Now lets start `ngrok` so we can access the app on an external network and create a `redirect url` for OAuth. 
+Now lets start `ngrok` so we can access the app on an external network and create a `redirect url` for OAuth and `request url` for Events and Interactivity. 
 
 ```
 ngrok http 3000
@@ -47,10 +47,16 @@ This should output a forwarding address for `http` and `https`. Take note of the
 Forwarding   https://3cb89939.ngrok.io -> http://localhost:3000
 ```
 
-Navigate to the **App Home** page in your app config and enable it. Then navigate to **Event Subscriptions** to enable it. The request URL should be set to your `ngrok` forwarding address with the `slack/events` path appended. ex:
+Navigate to the **App Home** page in your app config and enable it. Then navigate to **Event Subscriptions** to enable it. The request URL should be set to your `ngrok` forwarding address with the `slack/events` path appended. Use the same url to enable **Interactivity and Shortcuts**. example url:
 
 ```
 https://3cb89939.ngrok.io/slack/events
-```
+````
 
-Lastly, in the **Events Subscription** page, click **Subscribe to bot events** and add `app_home_opened`, `app_mentioned`, and `message.channels`.  
+In the **Events Subscription** page, click **Subscribe to bot events** and add `app_home_opened`, `app_mentioned`, and `message.channels`.  
+
+Lastly, navigate to **OAuth & Permissions** in your App Config and add a `redirect url`. The `redirect url` should be set to your `ngrok` forwarding address with the `slack/oauth_redirect` path appended. ex:
+
+```
+https://3cb89939.ngrok.io/slack/oauth_redirect
+```
